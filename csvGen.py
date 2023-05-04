@@ -1,5 +1,6 @@
 import numpy as np
 import csv
+from systemFunctionGen import *
 
 filename = input("filename: ")
 f = open(filename, "x")
@@ -53,7 +54,38 @@ pedLabels = [
 ]
 timeRange = input("what is the desired time range?")
 time = np.arange(0,int(timeRange),0.1)
-formattedArr = [[]]
-typeGen = input("what do you want to generate? Options are: \n all, inv, bat, imd, char, sens, ped \n") 
-
+formattedArr = []
+typeGen = input("what do you want to generate? Options are: \n all, inv, bat, imd, char, sens, ped \n")
+testPed = [[0,0,0,0,0,0],[0,0,0,0,0,0]]
+if(typeGen == "all"):
+    formattedArr.append(invLabels+batLabels+imdLabels+charLabels+sensLabels+pedLabels)
+    
+elif (typeGen == "inv"):
+    formattedArr.append(invLabels)
+    formattedArr = formattedArr + inverterFunc.genInverterAry(time)
+    
+elif (typeGen ==  "bat"):
+    formattedArr.append(batLabels)
+    formattedArr = formattedArr + batteryFunc.genBattAry(time)
+    
+elif (typeGen == "imd"):
+    formattedArr.append(imdLabels)
+    formattedArr = formattedArr + imdFunc.genImdAry(time)
+    
+elif (typeGen == "char"):
+    formattedArr.append(charLabels)
+    formattedArr = formattedArr + charFunc.genCharAry(time)
+    
+elif (typeGen == "sens"):
+    formattedArr.append(sensLabels)
+    formattedArr = formattedArr + sensFunc.genSensAry(time)
+    
+elif (typeGen == "ped"):
+    formattedArr.append(pedLabels)
+    formattedArr = formattedArr + pedFunc.genPedAry(time)
+    
+else:
+    print("invalid input")
+    exit()
+#print(formattedArr)
 wr.writerows(formattedArr)
