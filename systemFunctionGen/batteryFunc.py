@@ -1,4 +1,5 @@
 
+import random
 def genBattAry(time):
     battAry = []
     for i in range(len(time)):
@@ -21,18 +22,18 @@ def genBattAry(time):
     "getOCellVoltage",	"getAge",
     """
 def Current(x):
-    return 0
+    return random.randint(-200,200)
 def Voltage(x):
-    return 0
+    return random.randint(300,600)
 def ChargeState(x):
-    return 0
+    return random.randint(0,100)
 def Health(x):
-    return 0
+    return random.randint(0,100)
 def Temp(x):
-    return 0
+    return random.randint(0,150)
 def CellVoltage(x):
-    return 0
+    return random.randint(0,4)
 def OCellVoltage(x):
-    return 0
+    return random.randint(0,4)
 def Age(x):
-    return 0
+    return random.randint(0,1000)

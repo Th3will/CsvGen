@@ -1,3 +1,4 @@
+import random
 def genCharAry(time):
     charAry = []
     for i in range(len(time)):

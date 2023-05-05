@@ -2,9 +2,6 @@ import numpy as np
 import csv
 from systemFunctionGen import *
 
-filename = input("filename: ")
-f = open(filename, "x")
-wr = csv.writer(f)
 #time is 0.1 seconds, gonna be from time 0-5s
 
 invLabels = [
@@ -61,31 +58,54 @@ if(typeGen == "all"):
     formattedArr.append(invLabels+batLabels+imdLabels+charLabels+sensLabels+pedLabels)
     
 elif (typeGen == "inv"):
+    f = open(filename, "w")
+    wr = csv.writer(f)
     formattedArr.append(invLabels)
     formattedArr = formattedArr + inverterFunc.genInverterAry(time)
+    wr.writerows(formattedArr)
+
     
 elif (typeGen ==  "bat"):
+    f = open(filename, "w")
+    wr = csv.writer(f)
     formattedArr.append(batLabels)
     formattedArr = formattedArr + batteryFunc.genBattAry(time)
+    wr.writerows(formattedArr)
+
     
 elif (typeGen == "imd"):
+    f = open(filename, "w")
+    wr = csv.writer(f)
     formattedArr.append(imdLabels)
     formattedArr = formattedArr + imdFunc.genImdAry(time)
+    wr.writerows(formattedArr)
+
     
 elif (typeGen == "char"):
+    f = open(filename, "w")
+    wr = csv.writer(f)
     formattedArr.append(charLabels)
     formattedArr = formattedArr + charFunc.genCharAry(time)
+    wr.writerows(formattedArr)
+
     
 elif (typeGen == "sens"):
+    f = open("PEDALS.csv", "w")
+    wr = csv.writer(f)
     formattedArr.append(sensLabels)
     formattedArr = formattedArr + sensFunc.genSensAry(time)
+    wr.writerows(formattedArr)
+
     
 elif (typeGen == "ped"):
+    f = open("PEDALS.csv", "w")
+    wr = csv.writer(f)
     formattedArr.append(pedLabels)
     formattedArr = formattedArr + pedFunc.genPedAry(time)
+    wr.writerows(formattedArr)
+
     
 else:
     print("invalid input")
     exit()
 #print(formattedArr)
-wr.writerows(formattedArr)

@@ -1,3 +1,4 @@
+import random
 def genInverterAry(time):
     inverterAry = []
     for i in range(len(time)):
@@ -54,7 +55,7 @@ def genInverterAry(time):
 def ERPM(time):
     return 0
 def Duty(time):
-    return 0
+    return random.uniform(0,100)
 def VoltIn(time):
     return 0
 def ACCurrent(time):
