@@ -21,4 +21,6 @@ def Current(x):
 def Status(x):
     return 0
 def Age(x):
+    if x == 1:
+        return 2000
     return 0

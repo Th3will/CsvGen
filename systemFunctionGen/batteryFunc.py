@@ -26,14 +26,24 @@ def Current(x):
 def Voltage(x):
     return random.randint(300,600)
 def ChargeState(x):
-    return random.randint(0,100)
+    return 100
+    #return random.randint(0,100)
 def Health(x):
-    return random.randint(0,100)
+    return 100
+    #return random.randint(0,100)
 def Temp(x):
-    return random.randint(0,150)
+    if (x < 5):
+        return random.randint(20,40)
+    else:
+        return 70
 def CellVoltage(x):
-    return random.randint(0,4)
+    return 4
+    #return random.randint(0,4)
 def OCellVoltage(x):
-    return random.randint(0,4)
+    return 4
+    #return random.randint(0,4)
 def Age(x):
-    return random.randint(0,1000)
+    if x == 0:
+        return 2000
+    return 10
+    #return random.randint(0,1000)

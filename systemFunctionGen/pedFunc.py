@@ -17,14 +17,20 @@ def genPedAry(time):
     """
     
 def APPS1(x):
-    return 0
+    return 40
 def APPS2(x):
-    return 0
+    return 40
 def BrakeLimit(x):
     return 0
 def BrakePressure1(x):
-    return 0
+    if x < 5:
+        return 0
+    return 10
 def BrakePressure2(x):
-    return 0
+    if x < 5:
+        return 0
+    return 10
 def Age(x):
+    if x == 4:
+        return 2000
     return 0

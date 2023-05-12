@@ -124,4 +124,6 @@ def RLspeed(x):
 def RLpsi(x):
     return 0
 def Age(x):
+    if x == 5:
+        return 2000
     return 0

@@ -49,60 +49,90 @@ pedLabels = [
     "getAPPS1",	"getAPPS2",	"getBrakeLimit",
     "getBrakePressure1",	"getBrakePressure2",	"getAge"
 ]
-timeRange = input("what is the desired time range?")
-time = np.arange(0,int(timeRange),0.1)
+
+def aryStringConv(ary):
+    temp = "{ \n"
+    for i in range(len(ary)-1):
+        temp += "{"
+        for j in range (len(ary[0])-1):
+            temp += str(ary[i][j])
+            temp += ", "
+        temp += str(ary[i][len(ary[0])-1])
+        temp += "}, \n"
+    temp += "}"
+    return temp
+
+
+#timeRange = input("what is the desired time range?")
+time = np.arange(0,int(10),1)
 formattedArr = []
 typeGen = input("what do you want to generate? Options are: \n all, inv, bat, imd, char, sens, ped \n")
 testPed = [[0,0,0,0,0,0],[0,0,0,0,0,0]]
 if(typeGen == "all"):
-    formattedArr.append(invLabels+batLabels+imdLabels+charLabels+sensLabels+pedLabels)
+    f.open("all.txt", "w", newline = '')
+    allTemp = ""
     
+    allTemp += "Inverter Data: \n"
+    npInv = np.array(inverterFunc.genInverterAry(time))
+    allTemp+= aryStringConv(list(np.transpose(npInv)))
+    
+    allTemp += "Battery Data: \n"
+    npBat = np.array(batteryFunc.genBattAry(time))
+    allTemp+= aryStringConv(list(np.transpose(npBat)))
+    
+    allTemp += "IMD Data: \n"
+    npImd = np.array(imdFunc.genImdAry(time))
+    allTemp+= aryStringConv(list(np.transpose(npImd)))
+    
+    allTemp += "Charger Data: \n"
+    npChar = np.array(charFunc.genCharAry(time))
+    allTemp+= aryStringConv(list(np.transpose(npChar)))
+    
+    allTemp += "Sensor Data: \n"
+    npSens = np.array(sensFunc.genSensAry(time))
+    allTemp+= aryStringConv(list(np.transpose(npSens)))
+    
+    allTemp += "Pedal Data: \n"
+    npPed = np.array(pedFunc.genPedAry(time))
+    allTemp+= aryStringConv(list(np.transpose(npPed)))
+    
+    f.write(allTemp)
 elif (typeGen == "inv"):
-    f = open(filename, "w")
-    wr = csv.writer(f)
-    formattedArr.append(invLabels)
-    formattedArr = formattedArr + inverterFunc.genInverterAry(time)
-    wr.writerows(formattedArr)
+    f = open("INV.CTT", "w", newline = '')
+    #formattedArr.append(invLabels)
+    npInv = np.array(inverterFunc.genInverterAry(time))
+    f.write(aryStringConv(list(np.transpose(npInv))))
 
     
 elif (typeGen ==  "bat"):
-    f = open(filename, "w")
-    wr = csv.writer(f)
-    formattedArr.append(batLabels)
-    formattedArr = formattedArr + batteryFunc.genBattAry(time)
-    wr.writerows(formattedArr)
+    f = open("BATT.txt", "w",newline = '')
+    #formattedArr.append(batLabels)
+    npBat = np.array(batteryFunc.genBattAry(time))
+    f.write(aryStringConv(list(np.transpose(npBat))))
 
     
 elif (typeGen == "imd"):
-    f = open(filename, "w")
-    wr = csv.writer(f)
-    formattedArr.append(imdLabels)
-    formattedArr = formattedArr + imdFunc.genImdAry(time)
-    wr.writerows(formattedArr)
+    f = open("IMD.txt", "w", newline = '')
+    npImd = np.array(imdFunc.genImdAry(time))
+    f.write(aryStringConv(list(np.transpose(npImd))))
 
     
 elif (typeGen == "char"):
-    f = open(filename, "w")
-    wr = csv.writer(f)
-    formattedArr.append(charLabels)
-    formattedArr = formattedArr + charFunc.genCharAry(time)
-    wr.writerows(formattedArr)
+    f = open("CHAR.txt", "w", newline = '')
+    npChar = np.array(charFunc.genCharAry(time))
+    f.write(aryStringConv(list(np.transpose(npChar))))
 
     
 elif (typeGen == "sens"):
-    f = open("PEDALS.csv", "w")
-    wr = csv.writer(f)
-    formattedArr.append(sensLabels)
-    formattedArr = formattedArr + sensFunc.genSensAry(time)
-    wr.writerows(formattedArr)
+    f = open("SENS.txt", "w", newline = '')
+    npSens = np.array(sensFunc.genSensAry(time))
+    f.write(aryStringConv(list(np.transpose(npSens))))
 
     
 elif (typeGen == "ped"):
-    f = open("PEDALS.csv", "w")
-    wr = csv.writer(f)
-    formattedArr.append(pedLabels)
-    formattedArr = formattedArr + pedFunc.genPedAry(time)
-    wr.writerows(formattedArr)
+    f = open("PEDALS.txt", "w", newline = '')
+    npPed = np.array(inverterFunc.genInverterAry(time))
+    f.write(aryStringConv(list(np.transpose(npInv))))
 
     
 else:

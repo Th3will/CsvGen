@@ -61,7 +61,9 @@ def VoltIn(time):
 def ACCurrent(time):
     return 0
 def DCCurrent(time):
-    return 0
+    if(time < 5):
+        return random.randint(1,20)
+    return -2
 def InvTemp(time):
     return 0
 def MotorTemp(time):
@@ -117,4 +119,6 @@ def RPMMaxLimit(time):
 def PowerLimit(time):
     return 0
 def Age(time):
+    if time == 3:
+        return 2000
     return 0

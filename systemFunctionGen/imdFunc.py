@@ -36,4 +36,6 @@ def High_Battery_Voltage(x):
 def Low_Battery_Voltage(x):
     return 0
 def Age(x):
+    if x == 2:
+        return 2000
     return 0
